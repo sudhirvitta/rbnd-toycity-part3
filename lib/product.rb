@@ -16,7 +16,6 @@ class Product
     @@products
   end
 
-		
 	def self.find_by_title(title) 
 		if (found = @@products.select { |product| product.title == title}).empty?
 			raise ProductNotFoundError, "#{title} product not found"
@@ -26,11 +25,15 @@ class Product
 	end
 
 	def self.in_stock
-		@@products.select {|product| product.stock != 0}.map { |product| product.title}
+		@@products.select {|product| product.stock != 0}
 	end
 
 	def in_stock?
 		@stock != 0 ? true : false
+	end
+
+	def reduce_stock
+		@stock = @stock-1
 	end
 
 	private	
@@ -46,6 +49,5 @@ class Product
 			raise DuplicateProductError, "#{self.title} already exists."	
 		end
 	end
-	
 	
 end
