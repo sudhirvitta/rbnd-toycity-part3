@@ -25,12 +25,19 @@ class Customer
 
 	def purchase(product)
 			if product.in_stock?	
-				#@my_transactions.push(Transaction.new(self, product))
 				@my_transactions << Transaction.new(self, product)
-				puts " added new transaction"
 			else
 				raise OutOfStockError, "#{product.title} is out of stock"
 			end
+	end
+
+	def show_my_purchases
+		puts "#{self.name} order history"
+		@my_transactions.each { |order| puts "Product: #{order.product.title}"}
+	end
+
+	def add_to_purchase_list(transaction)
+		@my_transactions << transaction
 	end
 
 	private	
