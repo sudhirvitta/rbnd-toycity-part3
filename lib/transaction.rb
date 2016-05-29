@@ -13,10 +13,13 @@ class Transaction
 		@customer = customer
 		
 		# new transaciton, so need to reduce stock
-		puts @product.reduce_stock
-		# @product.in_stock? ? @product.reduce_stock : raise OutOfStockError, "#{@product.title} is out of stock"
-
+		if @product.in_stock?
+			@product.reduce_stock
+		else
+			raise OutOfStockError, "#{@product.title} is out of stock"
+		end
 		@@transactions << self
+
   end
 
 	def self.all
