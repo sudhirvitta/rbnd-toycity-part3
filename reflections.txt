@@ -1,0 +1,5 @@
+1) Handled error scenarios
+   * Error scenarios if customer not found in the find_by_name operation
+   * Error corner case scenarios when creating transaction to check stock is in present
+2) Added method to show order history of the customer
+   
