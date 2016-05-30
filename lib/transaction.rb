@@ -11,15 +11,7 @@ class Transaction
     @@id += 1
 		@product = product
 		@customer = customer
-		
-		# new transaciton, so need to reduce stock
-		if @product.in_stock?
-			@product.reduce_stock
-		else
-			raise OutOfStockError, "#{@product.title} is out of stock"
-		end
-		@@transactions << self
-
+		add_to_transactions
   end
 
 	def self.all
@@ -27,7 +19,19 @@ class Transaction
 	end
 
 	def self.find(index)
-		return @@transactions.fetch(index-1)
+		return @@transactions.find { |trans| trans.id == 2 }
 	end
 
+	private 
+
+	def add_to_transactions
+		# new transaciton, so need to reduce stock
+		if @product.in_stock?
+			@product.reduce_stock
+		else
+			raise OutOfStockError, "#{@product.title} is out of stock"
+		end
+		@@transactions << self
+	end
+	
 end
