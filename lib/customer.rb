@@ -16,19 +16,15 @@ class Customer
 	end
 
 	def self.find_by_name(name) 
-		if (found = @@customers.select { |customer| customer.name == name}).empty?
+		if (found = @@customers.find { |customer| customer.name == name}) == nil
 			raise CustomerNotFoundError, "#{name} product not found"
 		else
-			found.pop
+			found
 		end	
 	end
 
 	def purchase(product)
-			if product.in_stock?	
-				@my_transactions << Transaction.new(self, product)
-			else
-				raise OutOfStockError, "#{product.title} is out of stock"
-			end
+		@my_transactions << Transaction.new(self, product)
 	end
 
 	def show_my_purchases
@@ -43,11 +39,11 @@ class Customer
 	private	
 
 	def search_customer(name)
-		@@customers.select { |customer| customer.name == name}
+		@@customers.find { |customer| customer.name == name}
 	end
 
 	def add_to_customers
-		if search_customer(self.name).empty?
+		if search_customer(self.name) == nil
 			@@customers << self
 		else
 			raise DuplicateCustomerError, "#{self.name} already exists."	
