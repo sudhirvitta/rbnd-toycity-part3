@@ -29,7 +29,7 @@ class Product
 	end
 
 	def in_stock?
-		@stock != 0 ? true : false
+		@stock > 0
 	end
 
 	def reduce_stock
@@ -39,11 +39,11 @@ class Product
 	private	
 
 	def search_product(title)
-		@@products.select { |product| product.title == title}
+		@@products.find { |product| product.title == title}
 	end
 
 	def add_to_products
-		if search_product(self.title).empty?
+		if search_product(self.title) == nil
 			@@products << self
 		else
 			raise DuplicateProductError, "#{self.title} already exists."	
