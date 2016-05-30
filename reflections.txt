@@ -1,5 +1,12 @@
+New features added:
 1) Handled error scenarios
    * Error scenarios if customer not found in the find_by_name operation
    * Error corner case scenarios when creating transaction to check stock is in present
 2) Added method to show order history of the customer
-   
+
+Time spent on this project
+3-4 hours
+
+3) Most rewarding challenge was to be able to serialize cusotmer object to json format. This involved nested array of objects
+
+4) Still need to know more on usage of protected classes , ie to when to use, similar use cases
