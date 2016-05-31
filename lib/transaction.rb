@@ -19,7 +19,7 @@ class Transaction
 	end
 
 	def self.find(index)
-		return @@transactions.find { |trans| trans.id == 2 }
+		return @@transactions.find { |trans| trans.id == index }
 	end
 
 	private 
